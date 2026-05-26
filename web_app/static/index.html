@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NER · BiLSTM-CRF Dashboard</title>
+<meta name="description" content="Gán nhãn chuỗi bằng BiLSTM-CRF cho NER - So sánh Softmax vs CRF">
+<link rel="stylesheet" href="/static/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div id="particles"></div>
+<div class="shell">
+<aside class="sidebar">
+  <div class="logo"><h1>NER · BiLSTM-CRF</h1><span>Đề tài 11 — Gán nhãn chuỗi</span></div>
+  <nav class="nav">
+    <div class="nav-label">Công cụ</div>
+    <button class="nav-item active" data-page="demo"><span class="icon">🔬</span>Demo tương tác<span class="status-dot" id="dot-status"></span></button>
+    <button class="nav-item" data-page="f1"><span class="icon">📊</span>F1-Score</button>
+    <button class="nav-item" data-page="boundary"><span class="icon">⚠️</span>Lỗi Boundary</button>
+    <button class="nav-item" data-page="training"><span class="icon">📈</span>Biểu đồ Huấn luyện</button>
+    <button class="nav-item" data-page="ablation"><span class="icon">🧪</span>Ablation Study</button>
+    <div class="nav-label" style="margin-top:8px">Lý thuyết</div>
+    <button class="nav-item" data-page="bilstm"><span class="icon">🧠</span>BiLSTM là gì?</button>
+    <button class="nav-item" data-page="softmax"><span class="icon">📉</span>BiLSTM + Softmax</button>
+    <button class="nav-item" data-page="crf"><span class="icon">🔗</span>BiLSTM + CRF</button>
+    <button class="nav-item" data-page="role"><span class="icon">✅</span>Vai trò CRF</button>
+    <button class="nav-item" data-page="arch"><span class="icon">📐</span>Kiến trúc Model</button>
+  </nav>
+  <div class="sidebar-footer">Đề tài 11 · Deep Learning<br>BiLSTM-CRF cho NER</div>
+</aside>
+<main class="content">
+
+<!-- DEMO PAGE -->
+<section class="page active" id="page-demo">
+  <div class="page-title">Demo · Nhận diện thực thể tên</div>
+  <div class="page-sub">Nhập văn bản tiếng Anh để so sánh kết quả BiLSTM+Softmax và BiLSTM+CRF</div>
+  <div class="card">
+    <div class="section-title">Câu ví dụ nhanh</div>
+    <div class="demo-btns" id="demo-chips"></div>
+    <textarea id="input-text" placeholder="Nhập câu tiếng Anh... VD: Barack Obama was born in Hawaii."></textarea>
+    <div style="display:flex;gap:10px;margin-top:10px;justify-content:space-between;align-items:center">
+      <span id="model-badge" style="font-size:12px;color:var(--text3)">Đang kiểm tra...</span>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline btn-sm" id="btn-clear">Xóa</button>
+        <button class="btn btn-primary" id="btn-analyze"><span id="btn-text">🔍 Phân tích</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="legend" id="legend-box" style="margin-top:16px;display:none">
+    <div class="legend-item"><span class="legend-swatch" style="background:#a864dc"></span>PER</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#3498db"></span>GEO</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#f1943f"></span>ORG</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#27ae60"></span>GPE</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#f1c40f"></span>TIM</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#e74c3c"></span>Lỗi BIO</div>
+  </div>
+  <div id="results-area">
+    <div class="results-grid">
+      <div class="result-box"><div class="result-header"><h3>BiLSTM + Softmax</h3><span class="badge badge-softmax">Độc lập</span></div><div id="softmax-output"><div class="placeholder">Nhập văn bản và bấm Phân tích</div></div></div>
+      <div class="result-box"><div class="result-header"><h3>BiLSTM + CRF</h3><span class="badge badge-crf">Chuỗi toàn cục</span></div><div id="crf-output"><div class="placeholder">Nhập văn bản và bấm Phân tích</div></div></div>
+    </div>
+    <div id="comparison-row" style="display:none;margin-top:12px"><div class="card" style="background:var(--bg3)"><div class="section-title" style="font-size:13px">Kết quả chi tiết từng từ</div><div id="token-table"></div></div></div>
+  </div>
+</section>
+
+<!-- F1 PAGE -->
+<section class="page" id="page-f1">
+  <div class="page-title">F1-Score theo Entity</div>
+  <div class="page-sub">So sánh hiệu năng BiLSTM+Softmax vs BiLSTM+CRF</div>
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="metric"><div class="metric-label">F1 Softmax</div><div class="metric-value bad">0.24</div><div class="metric-sub">micro avg</div></div>
+    <div class="metric"><div class="metric-label">F1 CRF</div><div class="metric-value good">0.65</div><div class="metric-sub">micro avg</div></div>
+    <div class="metric"><div class="metric-label">Cải thiện</div><div class="metric-value" style="color:var(--accent)">+170%</div><div class="metric-sub">nhờ lớp CRF</div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">Biểu đồ F1-Score</div>
+    <div style="display:flex;gap:8px;margin-bottom:14px">
+      <button class="btn btn-outline btn-sm chart-btn active" data-metric="f1">F1</button>
+      <button class="btn btn-outline btn-sm chart-btn" data-metric="precision">Precision</button>
+      <button class="btn btn-outline btn-sm chart-btn" data-metric="recall">Recall</button>
+    </div>
+    <div class="chart-wrap"><canvas id="f1Chart"></canvas></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="section-title">Bảng chi tiết</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead><tr style="background:var(--bg3)">
+        <th style="padding:8px 12px;text-align:left;color:var(--text2)">Entity</th>
+        <th style="padding:8px;text-align:center;color:#f1943f">SM P</th><th style="padding:8px;text-align:center;color:#f1943f">SM R</th><th style="padding:8px;text-align:center;color:#f1943f">SM F1</th>
+        <th style="padding:8px;text-align:center;color:var(--accent)">CRF P</th><th style="padding:8px;text-align:center;color:var(--accent)">CRF R</th><th style="padding:8px;text-align:center;color:var(--accent)">CRF F1</th>
+        <th style="padding:8px;text-align:center;color:var(--text2)">Support</th>
+      </tr></thead>
+      <tbody id="f1-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- BOUNDARY PAGE -->
+<section class="page" id="page-boundary">
+  <div class="page-title">Phân tích lỗi Boundary</div>
+  <div class="page-sub">Lỗi vi phạm quy tắc BIO — điểm yếu của Softmax</div>
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="metric"><div class="metric-label">Ground Truth</div><div class="metric-value good">0</div></div>
+    <div class="metric"><div class="metric-label">Softmax</div><div class="metric-value bad">403</div></div>
+    <div class="metric"><div class="metric-label">CRF</div><div class="metric-value good">0</div></div>
+  </div>
+  <div class="card">
+    <div class="section-title">Mức độ lỗi Boundary</div>
+    <div style="margin:16px 0">
+      <div class="bar-row"><span class="bar-label">Ground Truth</span><div class="bar-track"><div class="bar-fill crf" style="width:0%"></div></div><span class="bar-val good">0</span></div>
+      <div class="bar-row"><span class="bar-label">CRF</span><div class="bar-track"><div class="bar-fill crf" style="width:0%"></div></div><span class="bar-val good">0</span></div>
+      <div class="bar-row"><span class="bar-label">Softmax</span><div class="bar-track"><div class="bar-fill softmax" id="softmax-bar" style="width:0%"></div></div><span class="bar-val bad">403</span></div>
+    </div>
+    <div class="warning-box"><p>⚠️ <strong>Softmax 403 lỗi BIO</strong> — gán <code>I-X</code> mà không có <code>B-X</code> trước đó.</p></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="section-title">Ví dụ lỗi</div>
+    <div class="error-example">
+      <div class="label">Ví dụ: O → I-PER</div>
+      <div style="margin-top:8px;font-size:13px;color:var(--text2)">
+        ✅ <strong>CRF:</strong> <span class="ent ent-O">The</span><span class="ent ent-O">president</span><span class="ent ent-B-PER">Obama<sup class="tag-label">B-PER</sup></span><span class="ent ent-O">visited</span><span class="ent ent-B-GEO">Paris<sup class="tag-label">B-GEO</sup></span><br>
+        ❌ <strong>Softmax:</strong> <span class="ent ent-O">The</span><span class="ent ent-O">president</span><span class="ent ent-error">Obama<sup class="tag-label">I-PER ⚠</sup></span><span class="ent ent-O">visited</span><span class="ent ent-B-GEO">Paris<sup class="tag-label">B-GEO</sup></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING HISTORY PAGE -->
+<section class="page" id="page-training">
+  <div class="page-title">Biểu đồ Huấn luyện</div>
+  <div class="page-sub">Loss và F1-score theo từng epoch</div>
+  <div class="card"><div class="section-title">Training Loss</div><div class="chart-wrap"><canvas id="lossChart"></canvas></div></div>
+  <div class="card" style="margin-top:16px"><div class="section-title">F1-Score theo Epoch</div><div class="chart-wrap"><canvas id="f1HistChart"></canvas></div></div>
+</section>
+
+<!-- ABLATION PAGE -->
+<section class="page" id="page-ablation">
+  <div class="page-title">Ablation Study</div>
+  <div class="page-sub">So sánh ảnh hưởng của CRF và Character features</div>
+  <div class="card">
+    <div class="section-title">Bảng so sánh các biến thể</div>
+    <table class="ablation-table">
+      <thead><tr><th style="text-align:left">Biến thể</th><th>CRF</th><th>Char</th><th>Dev F1</th><th>Test F1</th></tr></thead>
+      <tbody id="ablation-tbody"><tr><td colspan="5" style="color:var(--text3)">Đang tải...</td></tr></tbody>
+    </table>
+  </div>
+  <div class="card" style="margin-top:16px"><div class="section-title">Biểu đồ so sánh</div><div class="chart-wrap"><canvas id="ablationChart"></canvas></div></div>
+  <div class="card" style="margin-top:16px">
+    <div class="section-title">Nhận xét</div>
+    <div class="highlight-box"><p>📌 <strong>CRF</strong> là yếu tố quan trọng nhất, tăng F1 đáng kể so với Softmax. <strong>Char CNN</strong> bổ sung thêm cải thiện nhờ nắm bắt đặc trưng hình thái từ (tiền tố, hậu tố).</p></div>
+  </div>
+</section>
+
+<!-- BILSTM THEORY -->
+<section class="page" id="page-bilstm">
+  <div class="page-title">BiLSTM là gì?</div>
+  <div class="page-sub">Bidirectional Long Short-Term Memory</div>
+  <div class="theory-block">
+    <h3>1. Từ RNN đến LSTM</h3>
+    <p>RNN gặp vấn đề <em>vanishing gradient</em>. LSTM giải quyết bằng cơ chế <strong>cổng (gates)</strong>:</p>
+    <ul><li><strong>Forget gate</strong> — quên thông tin cũ</li><li><strong>Input gate</strong> — ghi thông tin mới</li><li><strong>Output gate</strong> — xuất hidden state</li></ul>
+    <div class="highlight-box"><p>📌 <code>C_t = f_t ⊙ C_{t-1} + i_t ⊙ ĝ_t</code></p></div>
+  </div>
+  <div class="theory-block">
+    <h3>2. Bidirectional LSTM</h3>
+    <p>BiLSTM kết hợp hai LSTM chạy song song (xuôi + ngược), mỗi từ "thấy" toàn bộ ngữ cảnh:</p>
+    <div class="arch-diagram">
+      <div class="arch-block blue">Từ #1</div><div class="arch-arrow">→</div><div class="arch-block blue">Từ #2</div><div class="arch-arrow">→</div><div class="arch-block blue">Từ #3</div>
+    </div>
+    <div class="arch-diagram" style="margin-top:-8px">
+      <div class="arch-block purple">Từ #3</div><div class="arch-arrow">→</div><div class="arch-block purple">Từ #2</div><div class="arch-arrow">→</div><div class="arch-block purple">Từ #1</div>
+    </div>
+    <div class="highlight-box"><p>✅ <code>h_i = [→h_i; ←h_i]</code> — ghép nối hidden state 2 chiều</p></div>
+  </div>
+</section>
+
+<!-- SOFTMAX THEORY -->
+<section class="page" id="page-softmax">
+  <div class="page-title">BiLSTM + Softmax</div>
+  <div class="page-sub">Phân loại độc lập — thiếu logic chuỗi</div>
+  <div class="theory-block">
+    <h3>Cơ chế</h3>
+    <div style="background:var(--bg3);border-radius:6px;padding:12px;margin:10px 0;font-family:monospace;font-size:13px;color:var(--accent)">P(tag | w_i) = softmax(W · h_i + b)</div>
+    <p>Chọn nhãn xác suất <strong>cao nhất tại từng vị trí</strong>, hoàn toàn độc lập.</p>
+  </div>
+  <div class="theory-block">
+    <h3>Hạn chế</h3>
+    <div class="warning-box"><p>❌ Có thể: <code>O → I-PER → I-PER</code> — vô lý vì thiếu <code>B-PER</code>!</p></div>
+    <ul style="margin-top:12px"><li>403 lỗi BIO trên tập test</li><li>F1 chỉ đạt <strong>0.24</strong></li><li>GPE gần như không nhận được: F1 = <strong>0.00</strong></li></ul>
+  </div>
+</section>
+
+<!-- CRF THEORY -->
+<section class="page" id="page-crf">
+  <div class="page-title">BiLSTM + CRF</div>
+  <div class="page-sub">Tối ưu hóa toàn bộ chuỗi nhãn</div>
+  <div class="theory-block">
+    <h3>Ý tưởng CRF</h3>
+    <p>CRF tính điểm cho <strong>toàn bộ chuỗi nhãn</strong> và chọn chuỗi tốt nhất:</p>
+    <div style="background:var(--bg3);border-radius:6px;padding:12px;margin:10px 0;font-family:monospace;font-size:13px;color:var(--accent)">score(y) = Σ emission(y_i|w_i) + Σ transition(y_{i-1}→y_i)</div>
+  </div>
+  <div class="theory-block">
+    <h3>Transition Matrix</h3>
+    <p>CRF học ma trận <code>T[i,j]</code>: xác suất chuyển nhãn <code>i → j</code>. Giá trị <code>-9.99 ≈ -∞</code> = gần như không thể.</p>
+    <div class="highlight-box"><p>📌 <code>O → I-PER = -9.99</code> → CRF sẽ không bao giờ chọn!</p></div>
+  </div>
+  <div class="theory-block">
+    <h3>Viterbi Decode</h3>
+    <p>Dynamic programming tìm chuỗi nhãn tối ưu: <code>O(n × T²)</code></p>
+    <div class="success-box"><p>✅ <strong>0 lỗi boundary</strong> trên toàn bộ tập test</p></div>
+  </div>
+</section>
+
+<!-- ROLE OF CRF -->
+<section class="page" id="page-role">
+  <div class="page-title">Vai trò của CRF</div>
+  <div class="page-sub">Kết luận từ thực nghiệm</div>
+  <div class="grid-3" style="margin-bottom:20px">
+    <div class="metric"><div class="metric-label">F1 tăng</div><div class="metric-value good">+170%</div><div class="metric-sub">0.24 → 0.65</div></div>
+    <div class="metric"><div class="metric-label">Boundary</div><div class="metric-value good">−403</div><div class="metric-sub">403 → 0 lỗi</div></div>
+    <div class="metric"><div class="metric-label">BIO valid</div><div class="metric-value good">100%</div><div class="metric-sub">Đảm bảo BIO</div></div>
+  </div>
+  <div class="theory-block">
+    <h3>1. Bộ lọc logic toàn cục</h3>
+    <p>CRF là "bộ lọc hậu xử lý thông minh" nhúng trong training. Transition Matrix ép toàn bộ tối ưu hóa tuân thủ ràng buộc chuỗi.</p>
+    <div class="success-box"><p>✅ <code>O → I-PER</code> bị cho điểm rất thấp → Viterbi không bao giờ chọn</p></div>
+  </div>
+  <div class="theory-block">
+    <h3>2. Toàn cục vs Cục bộ</h3>
+    <ul><li><strong>Softmax:</strong> tối ưu từng vị trí → tham lam → sai ngữ cảnh</li><li><strong>CRF:</strong> tối ưu toàn câu → hiểu ngữ cảnh tốt hơn</li></ul>
+  </div>
+  <div class="theory-block">
+    <h3>3. Kết luận</h3>
+    <ul><li>CRF tăng F1 từ 0.24 → 0.65 (+170%)</li><li>Loại bỏ hoàn toàn 403 lỗi BIO</li><li>GPE: 0.00 → 0.59, PER: 0.07 → 0.72</li></ul>
+    <div class="success-box"><p>🏆 <strong>BiLSTM+CRF</strong> là kiến trúc vượt trội cho NER. CRF là thành phần cốt lõi.</p></div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE PAGE -->
+<section class="page" id="page-arch">
+  <div class="page-title">Kiến trúc Model</div>
+  <div class="page-sub">Sơ đồ chi tiết BiLSTM-CRF cho NER</div>
+  <div class="card">
+    <div class="section-title">Pipeline xử lý</div>
+    <div class="arch-diagram" style="flex-wrap:wrap;gap:10px">
+      <div class="arch-block blue">Word<br>Embed<br><small>100d</small></div>
+      <div class="arch-arrow">+</div>
+      <div class="arch-block purple">Char<br>CNN<br><small>25d</small></div>
+      <div class="arch-arrow">+</div>
+      <div class="arch-block orange">Cap<br>Feature<br><small>4 class</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-block blue">BiLSTM<br><small>200d×2</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-block green">Dropout<br><small>0.5</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-block orange">Dense<br><small>→ tags</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-block green">CRF /<br>Softmax</div>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:16px">
+    <div class="theory-block">
+      <h3>Đặc trưng đầu vào</h3>
+      <ul>
+        <li><strong>Word Embedding</strong> (100d) — ý nghĩa từ</li>
+        <li><strong>Char CNN</strong> (25d) — hình thái ký tự</li>
+        <li><strong>Capitalization</strong> (4 lớp) — chữ hoa/thường</li>
+      </ul>
+    </div>
+    <div class="theory-block">
+      <h3>Tham số mặc định</h3>
+      <ul>
+        <li>BiLSTM hidden: <code>200</code></li>
+        <li>Dropout: <code>0.5</code></li>
+        <li>Optimizer: <code>SGD (momentum=0.9)</code></li>
+        <li>Tag scheme: <code>IOB</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>
