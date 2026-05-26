@@ -3,24 +3,33 @@
     "model_name": "bilstm_softmax",
     "is_crf": false,
     "boundary_errors": {
-      "total": 738,
+      "total": 424,
       "by_type": {
-        "I- sau O": 366,
-        "I-per sau I-org": 30,
-        "I-org sau B-geo": 114,
-        "I-org sau B-gpe": 35,
-        "I-org sau B-per": 88,
-        "I-org sau I-geo": 11,
-        "I-geo sau I-org": 15,
-        "I-per sau B-geo": 4,
-        "I-per sau B-org": 31,
-        "I-geo sau B-gpe": 15,
-        "I-geo sau B-org": 12,
-        "I-org sau I-per": 9,
-        "I-per sau B-gpe": 1,
-        "I-geo sau B-per": 4,
-        "I-geo sau B-tim": 2,
-        "I-org sau B-tim": 1
+        "I-per sau I-org": 27,
+        "I- sau O": 240,
+        "I-org sau B-geo": 48,
+        "I-per sau B-geo": 14,
+        "I-org sau B-per": 30,
+        "I-org sau B-tim": 1,
+        "I-org sau B-gpe": 9,
+        "I-eve sau B-gpe": 1,
+        "I-per sau B-org": 9,
+        "I-per sau I-geo": 10,
+        "I-geo sau I-per": 4,
+        "I-eve sau B-org": 1,
+        "I-geo sau B-per": 1,
+        "I-geo sau I-org": 4,
+        "I-org sau I-geo": 1,
+        "I-tim sau B-org": 1,
+        "I-tim sau B-geo": 2,
+        "I-tim sau I-geo": 2,
+        "I-org sau I-per": 8,
+        "I-per sau B-gpe": 3,
+        "I-eve sau I-tim": 1,
+        "I-geo sau B-gpe": 3,
+        "I-geo sau B-org": 2,
+        "I-tim sau I-eve": 1,
+        "I-per sau B-tim": 1
       }
     },
     "f1_report": {
@@ -31,21 +40,21 @@
         "support": "35"
       },
       "eve": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1-score": 0.0,
+        "precision": 0.6428571428571429,
+        "recall": 0.375,
+        "f1-score": 0.4736842105263159,
         "support": "24"
       },
       "geo": {
-        "precision": 0.7948594763391785,
-        "recall": 0.8687319506432134,
-        "f1-score": 0.830155544405419,
+        "precision": 0.8184593705965242,
+        "recall": 0.9149383040168023,
+        "f1-score": 0.864013883723813,
         "support": "3809"
       },
       "gpe": {
-        "precision": 0.944141689373297,
-        "recall": 0.9052906596995428,
-        "f1-score": 0.9243081027009004,
+        "precision": 0.9649595687331537,
+        "recall": 0.9353363814500326,
+        "f1-score": 0.9499170812603649,
         "support": "1531"
       },
       "nat": {
@@ -55,39 +64,39 @@
         "support": "14"
       },
       "org": {
-        "precision": 0.5463736263736264,
-        "recall": 0.6147378832838774,
-        "f1-score": 0.5785431696532465,
+        "precision": 0.7339130434782609,
+        "recall": 0.6261127596439169,
+        "f1-score": 0.6757405924739791,
         "support": "2022"
       },
       "per": {
-        "precision": 0.6642651296829971,
-        "recall": 0.5719602977667494,
-        "f1-score": 0.6146666666666668,
+        "precision": 0.7062857142857143,
+        "recall": 0.7667493796526055,
+        "f1-score": 0.7352766210588936,
         "support": "1612"
       },
       "tim": {
-        "precision": 0.8721272834413671,
-        "recall": 0.72265625,
-        "f1-score": 0.7903871829105474,
+        "precision": 0.8887171561051005,
+        "recall": 0.84228515625,
+        "f1-score": 0.8648784156430183,
         "support": "2048"
       },
       "micro avg": {
-        "precision": 0.7588026567191338,
-        "recall": 0.7516899504281208,
-        "f1-score": 0.7552295571855474,
+        "precision": 0.819280343716434,
+        "recall": 0.8249662009914376,
+        "f1-score": 0.8221134414155478,
         "support": "11095"
       },
       "macro avg": {
-        "precision": 0.47772090065130823,
-        "recall": 0.4604221301741729,
-        "f1-score": 0.46725758329209754,
+        "precision": 0.594398999506987,
+        "recall": 0.5575527476266697,
+        "f1-score": 0.570438850585798,
         "support": "11095"
       },
       "weighted avg": {
-        "precision": 0.7602325560947124,
-        "recall": 0.7516899504281208,
-        "f1-score": 0.7531814403047906,
+        "precision": 0.8159432983151016,
+        "recall": 0.8249662009914376,
+        "f1-score": 0.8183510357757979,
         "support": "11095"
       }
     },
@@ -115,364 +124,364 @@
         [
           0,
           0,
-          7,
-          0,
-          0,
-          16,
-          2,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          10
-        ],
-        [
-          0,
-          0,
-          4,
+          10,
           1,
-          0,
-          3,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
-          0,
-          1,
-          12
-        ],
-        [
-          0,
-          0,
-          3393,
-          12,
-          0,
-          183,
-          25,
-          0,
-          0,
-          0,
-          23,
-          0,
-          0,
-          3,
-          18,
-          0,
-          152
-        ],
-        [
-          0,
-          0,
-          80,
-          1392,
-          0,
-          17,
-          3,
-          0,
-          0,
-          0,
-          3,
-          0,
-          0,
-          3,
-          4,
-          0,
-          29
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          3,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          10
-        ],
-        [
-          0,
-          0,
-          262,
-          27,
-          0,
-          1328,
-          45,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          52,
-          40,
-          0,
-          267
-        ],
-        [
-          0,
-          0,
-          111,
-          6,
-          0,
-          117,
-          1029,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          34,
-          85,
-          0,
-          228
-        ],
-        [
-          0,
-          0,
-          30,
-          1,
-          0,
-          4,
-          0,
-          1554,
-          0,
-          0,
-          0,
-          0,
-          0,
-          4,
-          0,
-          21,
-          434
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          16,
-          3,
-          0,
-          5
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          6,
-          1,
-          0,
-          7
-        ],
-        [
-          0,
-          0,
-          80,
-          2,
-          0,
-          3,
-          1,
-          0,
-          0,
-          0,
-          471,
-          0,
-          0,
-          156,
-          12,
-          0,
-          33
-        ],
-        [
-          0,
-          0,
           0,
           7,
+          4,
           0,
           0,
           0,
           0,
-          0,
-          0,
-          5,
           0,
           0,
           2,
           0,
           0,
+          11
+        ],
+        [
+          0,
+          9,
+          4,
+          1,
+          0,
+          4,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
           2
         ],
         [
           0,
           0,
+          3541,
+          8,
+          0,
+          62,
+          67,
+          3,
           0,
           0,
+          16,
           0,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1
+          5,
+          21,
+          2,
+          84
         ],
         [
           0,
           0,
-          43,
-          6,
+          77,
+          1435,
           0,
-          45,
-          7,
+          4,
+          5,
+          0,
+          0,
+          0,
+          2,
+          1,
+          0,
+          2,
+          1,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          13
+        ],
+        [
+          0,
+          0,
+          317,
+          18,
+          0,
+          1316,
+          116,
+          0,
+          0,
+          1,
           0,
           0,
           0,
           47,
-          0,
-          0,
-          1275,
-          66,
-          0,
-          197
+          42,
+          2,
+          163
         ],
         [
           0,
           0,
-          4,
-          0,
-          0,
+          75,
           1,
-          53,
+          0,
+          35,
+          1317,
+          0,
+          0,
+          0,
           0,
           0,
           0,
           17,
-          0,
-          0,
-          188,
-          1326,
+          94,
           0,
           73
         ],
         [
           0,
           0,
-          11,
+          32,
           0,
           0,
-          0,
-          0,
-          63,
+          3,
+          1,
+          1771,
           0,
           0,
           2,
           0,
           0,
-          8,
+          2,
           0,
-          350,
-          256
+          45,
+          192
         ],
         [
           0,
           0,
-          78,
-          14,
           0,
-          129,
-          21,
-          27,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          15,
+          3,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          2,
+          2,
+          6
+        ],
+        [
+          0,
+          0,
+          53,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          571,
+          0,
+          0,
+          57,
+          53,
+          0,
+          21
+        ],
+        [
+          0,
+          0,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          3,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
           0,
           0,
           1,
           0,
           0,
-          115,
-          14,
-          7,
-          89016
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          34,
+          3,
+          0,
+          24,
+          16,
+          1,
+          0,
+          1,
+          54,
+          0,
+          0,
+          1302,
+          133,
+          1,
+          117
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          28,
+          1,
+          0,
+          0,
+          12,
+          0,
+          0,
+          35,
+          1552,
+          1,
+          31
+        ],
+        [
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          1,
+          37,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          1,
+          519,
+          119
+        ],
+        [
+          0,
+          0,
+          83,
+          11,
+          0,
+          64,
+          52,
+          74,
+          0,
+          1,
+          10,
+          0,
+          0,
+          86,
+          39,
+          41,
+          88961
         ]
       ]
     },
     "entity_errors": {
-      "total_errors": 4237,
+      "total_errors": 3074,
       "error_type_counts": {
-        "B-tim → O": 434,
-        "B-org → O": 267,
-        "B-org → B-geo": 262,
-        "I-tim → O": 256,
-        "B-per → O": 228,
-        "I-org → O": 197,
-        "I-per → I-org": 188,
-        "B-geo → B-org": 183,
-        "I-geo → I-org": 156,
-        "B-geo → O": 152,
-        "O → B-org": 129,
-        "B-per → B-org": 117,
-        "O → I-org": 115,
-        "B-per → B-geo": 111,
-        "B-per → I-per": 85,
-        "B-gpe → B-geo": 80,
-        "I-geo → B-geo": 80,
-        "O → B-geo": 78,
-        "I-per → O": 73,
-        "I-org → I-per": 66
+        "B-org → B-geo": 317,
+        "B-tim → O": 192,
+        "B-org → O": 163,
+        "I-org → I-per": 133,
+        "I-tim → O": 119,
+        "I-org → O": 117,
+        "B-org → B-per": 116,
+        "B-per → I-per": 94,
+        "O → I-org": 86,
+        "B-geo → O": 84,
+        "O → B-geo": 83,
+        "B-gpe → B-geo": 77,
+        "B-per → B-geo": 75,
+        "O → B-tim": 74,
+        "B-per → O": 73,
+        "B-geo → B-per": 67,
+        "O → B-org": 64,
+        "B-geo → B-org": 62,
+        "I-geo → I-org": 57,
+        "I-org → I-geo": 54
       },
       "examples": [
         {
-          "word": "Chancellor",
-          "true_tag": "B-per",
-          "pred_tag": "O",
-          "context": "German Chancellor Angela Merkel",
-          "position": 1
+          "word": "first",
+          "true_tag": "O",
+          "pred_tag": "B-tim",
+          "context": "for the first time .",
+          "position": 20
         },
         {
           "word": "time",
           "true_tag": "B-tim",
-          "pred_tag": "O",
+          "pred_tag": "I-tim",
           "context": "the first time .",
           "position": 21
         },
@@ -514,7 +523,7 @@
         {
           "word": "Polynesian",
           "true_tag": "O",
-          "pred_tag": "B-gpe",
+          "pred_tag": "B-geo",
           "context": "annexed various Polynesian island groups",
           "position": 4
         },
@@ -524,6 +533,13 @@
           "pred_tag": "B-tim",
           "context": "Later , he",
           "position": 0
+        },
+        {
+          "word": "Minister",
+          "true_tag": "O",
+          "pred_tag": "I-per",
+          "context": "and Prime Minister Ibrahim al-Jaafari",
+          "position": 15
         },
         {
           "word": "Ibrahim",
@@ -540,784 +556,6 @@
           "position": 14
         },
         {
-          "word": "two",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "Israeli bank two years ago",
-          "position": 25
-        },
-        {
-          "word": "one",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "possible runoffs one week later",
-          "position": 29
-        },
-        {
-          "word": "later",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "one week later .",
-          "position": 31
-        },
-        {
-          "word": ",",
-          "true_tag": "I-tim",
-          "pred_tag": "O",
-          "context": "On Tuesday , Senegal and",
-          "position": 2
-        },
-        {
-          "word": "Senegal",
-          "true_tag": "B-gpe",
-          "pred_tag": "B-geo",
-          "context": "Tuesday , Senegal and China",
-          "position": 3
-        },
-        {
-          "word": "Vivanco",
-          "true_tag": "B-per",
-          "pred_tag": "O",
-          "context": "Vivanco and his",
-          "position": 0
-        },
-        {
-          "word": "al-Anbar",
-          "true_tag": "B-geo",
-          "pred_tag": "O",
-          "context": "in western al-Anbar province ,",
-          "position": 14
-        },
-        {
-          "word": "Pakistan",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": "Bhutto 's Pakistan People 's",
-          "position": 3
-        },
-        {
-          "word": "Party",
-          "true_tag": "B-org",
-          "pred_tag": "O",
-          "context": "People 's Party and former",
-          "position": 6
-        },
-        {
-          "word": "Minister",
-          "true_tag": "I-per",
-          "pred_tag": "O",
-          "context": "former Prime Minister Nawaz Sharif",
-          "position": 10
-        },
-        {
-          "word": "Pakistan",
-          "true_tag": "B-geo",
-          "pred_tag": "B-org",
-          "context": "Sharif 's Pakistan Muslim League",
-          "position": 14
-        },
-        {
-          "word": "Muslim",
-          "true_tag": "I-geo",
-          "pred_tag": "I-org",
-          "context": "'s Pakistan Muslim League Party",
-          "position": 15
-        },
-        {
-          "word": "League",
-          "true_tag": "I-geo",
-          "pred_tag": "I-org",
-          "context": "Pakistan Muslim League Party ,",
-          "position": 16
-        },
-        {
-          "word": "Party",
-          "true_tag": "I-geo",
-          "pred_tag": "I-org",
-          "context": "Muslim League Party , the",
-          "position": 17
-        },
-        {
-          "word": "Telerate",
-          "true_tag": "B-org",
-          "pred_tag": "O",
-          "context": "Telerate provides an",
-          "position": 0
-        },
-        {
-          "word": "Sudan",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": ", a Sudan Airways plane",
-          "position": 5
-        },
-        {
-          "word": "Airways",
-          "true_tag": "I-org",
-          "pred_tag": "O",
-          "context": "a Sudan Airways plane crashed",
-          "position": 6
-        },
-        {
-          "word": "Sudan",
-          "true_tag": "B-gpe",
-          "pred_tag": "I-geo",
-          "context": "near Port Sudan , killing",
-          "position": 14
-        },
-        {
-          "word": "Muslim",
-          "true_tag": "B-geo",
-          "pred_tag": "O",
-          "context": "the eastern Muslim town of",
-          "position": 6
-        },
-        {
-          "word": "Muttur",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": "town of Muttur in Trincomalee",
-          "position": 9
-        },
-        {
-          "word": "four",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "more than four years ago",
-          "position": 27
-        },
-        {
-          "word": "Vioxx",
-          "true_tag": "B-art",
-          "pred_tag": "O",
-          "context": "of a Vioxx user .",
-          "position": 17
-        },
-        {
-          "word": "Tel",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": "branch in Tel Aviv .",
-          "position": 12
-        },
-        {
-          "word": "Aviv",
-          "true_tag": "I-org",
-          "pred_tag": "I-geo",
-          "context": "in Tel Aviv .",
-          "position": 13
-        },
-        {
-          "word": "Bhubaneshwar",
-          "true_tag": "B-tim",
-          "pred_tag": "B-geo",
-          "context": "state capital Bhubaneshwar .",
-          "position": 15
-        },
-        {
-          "word": "Minister",
-          "true_tag": "I-per",
-          "pred_tag": "O",
-          "context": ", Prime Minister Tony Blair",
-          "position": 3
-        },
-        {
-          "word": "Tony",
-          "true_tag": "I-per",
-          "pred_tag": "B-per",
-          "context": "Prime Minister Tony Blair told",
-          "position": 4
-        },
-        {
-          "word": "African",
-          "true_tag": "B-org",
-          "pred_tag": "B-gpe",
-          "context": "the 53-member African Union have",
-          "position": 5
-        },
-        {
-          "word": "two-day",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "opened their two-day summit ,",
-          "position": 10
-        },
-        {
-          "word": "Fiji",
-          "true_tag": "B-per",
-          "pred_tag": "B-org",
-          "context": "Fiji 's sugar",
-          "position": 0
-        },
-        {
-          "word": "President",
-          "true_tag": "O",
-          "pred_tag": "B-per",
-          "context": "THE President of a",
-          "position": 1
-        },
-        {
-          "word": "See",
-          "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": "Do n't See What You",
-          "position": 23
-        },
-        {
-          "word": "What",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "n't See What You Want",
-          "position": 24
-        },
-        {
-          "word": "You",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "See What You Want ,",
-          "position": 25
-        },
-        {
-          "word": "Want",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "What You Want , Ask",
-          "position": 26
-        },
-        {
-          "word": "Ask",
-          "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": "Want , Ask For It",
-          "position": 28
-        },
-        {
-          "word": "For",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": ", Ask For It .",
-          "position": 29
-        },
-        {
-          "word": "Patrick",
-          "true_tag": "B-per",
-          "pred_tag": "B-org",
-          "context": "intelligence officer Patrick Maher will",
-          "position": 5
-        },
-        {
-          "word": "Maher",
-          "true_tag": "I-per",
-          "pred_tag": "I-org",
-          "context": "officer Patrick Maher will serve",
-          "position": 6
-        }
-      ]
-    }
-  },
-  "bilstm_crf": {
-    "model_name": "bilstm_crf",
-    "is_crf": true,
-    "boundary_errors": {
-      "total": 0,
-      "by_type": {}
-    },
-    "f1_report": {
-      "art": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1-score": 0.0,
-        "support": "35"
-      },
-      "eve": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1-score": 0.0,
-        "support": "24"
-      },
-      "geo": {
-        "precision": 0.8182895048566691,
-        "recall": 0.9067996849566815,
-        "f1-score": 0.8602739726027397,
-        "support": "3809"
-      },
-      "gpe": {
-        "precision": 0.9644079397672827,
-        "recall": 0.9203135205747878,
-        "f1-score": 0.9418449197860962,
-        "support": "1531"
-      },
-      "nat": {
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1-score": 0.0,
-        "support": "14"
-      },
-      "org": {
-        "precision": 0.6881948120698782,
-        "recall": 0.6429277942631059,
-        "f1-score": 0.664791613398108,
-        "support": "2022"
-      },
-      "per": {
-        "precision": 0.7435897435897436,
-        "recall": 0.6836228287841191,
-        "f1-score": 0.7123464770523594,
-        "support": "1612"
-      },
-      "tim": {
-        "precision": 0.8894849785407726,
-        "recall": 0.8095703125,
-        "f1-score": 0.8476482617586912,
-        "support": "2048"
-      },
-      "micro avg": {
-        "precision": 0.817349088577448,
-        "recall": 0.8042361424064894,
-        "f1-score": 0.8107395965836817,
-        "support": "11095"
-      },
-      "macro avg": {
-        "precision": 0.5129958723530432,
-        "recall": 0.4954042676348368,
-        "f1-score": 0.5033631555747493,
-        "support": "11095"
-      },
-      "weighted avg": {
-        "precision": 0.8116480479951531,
-        "recall": 0.8042361424064894,
-        "f1-score": 0.8064211750534047,
-        "support": "11095"
-      }
-    },
-    "confusion_matrix": {
-      "tags": [
-        "B-art",
-        "B-eve",
-        "B-geo",
-        "B-gpe",
-        "B-nat",
-        "B-org",
-        "B-per",
-        "B-tim",
-        "I-art",
-        "I-eve",
-        "I-geo",
-        "I-gpe",
-        "I-nat",
-        "I-org",
-        "I-per",
-        "I-tim",
-        "O"
-      ],
-      "matrix": [
-        [
-          0,
-          0,
-          12,
-          1,
-          0,
-          9,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          11
-        ],
-        [
-          0,
-          0,
-          2,
-          1,
-          0,
-          8,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          10,
-          0,
-          2,
-          0
-        ],
-        [
-          0,
-          0,
-          3476,
-          10,
-          0,
-          126,
-          39,
-          6,
-          0,
-          0,
-          15,
-          0,
-          0,
-          16,
-          20,
-          4,
-          97
-        ],
-        [
-          0,
-          0,
-          85,
-          1411,
-          0,
-          12,
-          2,
-          0,
-          0,
-          0,
-          7,
-          1,
-          0,
-          8,
-          0,
-          0,
-          5
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          1,
-          2,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          10
-        ],
-        [
-          0,
-          0,
-          319,
-          20,
-          0,
-          1378,
-          63,
-          1,
-          0,
-          0,
-          0,
-          2,
-          0,
-          73,
-          36,
-          1,
-          129
-        ],
-        [
-          0,
-          0,
-          103,
-          1,
-          0,
-          105,
-          1219,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          68,
-          25,
-          0,
-          89
-        ],
-        [
-          0,
-          0,
-          32,
-          0,
-          0,
-          5,
-          0,
-          1719,
-          0,
-          0,
-          0,
-          0,
-          0,
-          3,
-          0,
-          42,
-          247
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          1,
-          0,
-          0,
-          0,
-          2,
-          0,
-          0,
-          17,
-          2,
-          0,
-          2
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          12,
-          1,
-          1,
-          2
-        ],
-        [
-          0,
-          0,
-          57,
-          1,
-          0,
-          5,
-          1,
-          0,
-          0,
-          0,
-          539,
-          0,
-          0,
-          114,
-          17,
-          1,
-          23
-        ],
-        [
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          6,
-          6,
-          0,
-          2,
-          1,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          1,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          37,
-          4,
-          0,
-          47,
-          5,
-          0,
-          0,
-          0,
-          52,
-          0,
-          0,
-          1408,
-          43,
-          4,
-          86
-        ],
-        [
-          0,
-          0,
-          4,
-          1,
-          0,
-          1,
-          102,
-          1,
-          0,
-          0,
-          19,
-          0,
-          0,
-          187,
-          1278,
-          1,
-          68
-        ],
-        [
-          0,
-          0,
-          8,
-          0,
-          0,
-          4,
-          1,
-          38,
-          0,
-          0,
-          0,
-          0,
-          0,
-          7,
-          1,
-          496,
-          135
-        ],
-        [
-          0,
-          0,
-          86,
-          9,
-          0,
-          187,
-          45,
-          98,
-          0,
-          0,
-          11,
-          0,
-          0,
-          243,
-          12,
-          57,
-          88674
-        ]
-      ]
-    },
-    "entity_errors": {
-      "total_errors": 3767,
-      "error_type_counts": {
-        "B-org → B-geo": 319,
-        "B-tim → O": 247,
-        "O → I-org": 243,
-        "I-per → I-org": 187,
-        "O → B-org": 187,
-        "I-tim → O": 135,
-        "B-org → O": 129,
-        "B-geo → B-org": 126,
-        "I-geo → I-org": 114,
-        "B-per → B-org": 105,
-        "B-per → B-geo": 103,
-        "I-per → B-per": 102,
-        "O → B-tim": 98,
-        "B-geo → O": 97,
-        "B-per → O": 89,
-        "O → B-geo": 86,
-        "I-org → O": 86,
-        "B-gpe → B-geo": 85,
-        "B-org → I-org": 73,
-        "I-per → O": 68
-      },
-      "examples": [
-        {
-          "word": "time",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "the first time .",
-          "position": 21
-        },
-        {
-          "word": "Iran",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": "Iran 's Supreme",
-          "position": 0
-        },
-        {
-          "word": "Supreme",
-          "true_tag": "B-per",
-          "pred_tag": "B-org",
-          "context": "Iran 's Supreme Leader Ayatollah",
-          "position": 2
-        },
-        {
-          "word": "Leader",
-          "true_tag": "I-per",
-          "pred_tag": "I-org",
-          "context": "'s Supreme Leader Ayatollah Ali",
-          "position": 3
-        },
-        {
-          "word": "Ayatollah",
-          "true_tag": "I-per",
-          "pred_tag": "I-org",
-          "context": "Supreme Leader Ayatollah Ali Khamenei",
-          "position": 4
-        },
-        {
-          "word": "Ali",
-          "true_tag": "I-per",
-          "pred_tag": "I-org",
-          "context": "Leader Ayatollah Ali Khamenei suggested",
-          "position": 5
-        },
-        {
-          "word": "Khamenei",
-          "true_tag": "I-per",
-          "pred_tag": "I-org",
-          "context": "Ayatollah Ali Khamenei suggested last",
-          "position": 6
-        },
-        {
-          "word": "Washington",
-          "true_tag": "B-org",
-          "pred_tag": "B-geo",
-          "context": "ties with Washington might one",
-          "position": 13
-        },
-        {
           "word": "one",
           "true_tag": "B-tim",
           "pred_tag": "O",
@@ -1337,20 +575,6 @@
           "pred_tag": "B-geo",
           "context": "Tuesday , Senegal and China",
           "position": 3
-        },
-        {
-          "word": "Vivanco",
-          "true_tag": "B-per",
-          "pred_tag": "O",
-          "context": "Vivanco and his",
-          "position": 0
-        },
-        {
-          "word": "'s",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "Pakistan People 's Party and",
-          "position": 5
         },
         {
           "word": "Party",
@@ -1409,11 +633,782 @@
           "position": 0
         },
         {
-          "word": "AU",
+          "word": "Sudan",
+          "true_tag": "B-gpe",
+          "pred_tag": "I-geo",
+          "context": "near Port Sudan , killing",
+          "position": 14
+        },
+        {
+          "word": "Muttur",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "town of Muttur in Trincomalee",
+          "position": 9
+        },
+        {
+          "word": "Abu",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Baghdad 's Abu Ghraib prison",
+          "position": 15
+        },
+        {
+          "word": "Ghraib",
+          "true_tag": "I-org",
+          "pred_tag": "I-geo",
+          "context": "'s Abu Ghraib prison in",
+          "position": 16
+        },
+        {
+          "word": "Vioxx",
+          "true_tag": "B-art",
+          "pred_tag": "O",
+          "context": "of a Vioxx user .",
+          "position": 17
+        },
+        {
+          "word": "Tel",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "branch in Tel Aviv .",
+          "position": 12
+        },
+        {
+          "word": "Aviv",
+          "true_tag": "I-org",
+          "pred_tag": "I-geo",
+          "context": "in Tel Aviv .",
+          "position": 13
+        },
+        {
+          "word": "Bhubaneshwar",
+          "true_tag": "B-tim",
+          "pred_tag": "B-geo",
+          "context": "state capital Bhubaneshwar .",
+          "position": 15
+        },
+        {
+          "word": "Tony",
+          "true_tag": "I-per",
+          "pred_tag": "B-per",
+          "context": "Prime Minister Tony Blair told",
+          "position": 4
+        },
+        {
+          "word": "African",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "the 53-member African Union have",
+          "position": 5
+        },
+        {
+          "word": "President",
+          "true_tag": "O",
+          "pred_tag": "B-per",
+          "context": "THE President of a",
+          "position": 1
+        },
+        {
+          "word": "You",
+          "true_tag": "O",
+          "pred_tag": "I-org",
+          "context": "See What You Want ,",
+          "position": 25
+        },
+        {
+          "word": "Want",
+          "true_tag": "O",
+          "pred_tag": "I-org",
+          "context": "What You Want , Ask",
+          "position": 26
+        },
+        {
+          "word": "Ask",
           "true_tag": "O",
           "pred_tag": "B-org",
-          "context": "The AU leaders are",
-          "position": 1
+          "context": "Want , Ask For It",
+          "position": 28
+        },
+        {
+          "word": "For",
+          "true_tag": "O",
+          "pred_tag": "I-org",
+          "context": ", Ask For It .",
+          "position": 29
+        },
+        {
+          "word": "al-Qawasmi",
+          "true_tag": "O",
+          "pred_tag": "B-per",
+          "context": "Officials said al-Qawasmi has been",
+          "position": 2
+        },
+        {
+          "word": "1998",
+          "true_tag": "B-tim",
+          "pred_tag": "I-tim",
+          "context": "wanted since 1998 for a",
+          "position": 7
+        },
+        {
+          "word": "Minister",
+          "true_tag": "O",
+          "pred_tag": "I-per",
+          "context": "Israeli Prime Minister Benjamin Netanyahu",
+          "position": 2
+        },
+        {
+          "word": "Benjamin",
+          "true_tag": "B-per",
+          "pred_tag": "I-per",
+          "context": "Prime Minister Benjamin Netanyahu has",
+          "position": 3
+        },
+        {
+          "word": "poll",
+          "true_tag": "I-tim",
+          "pred_tag": "O",
+          "context": "'s December poll .",
+          "position": 20
+        },
+        {
+          "word": "Afghani",
+          "true_tag": "B-org",
+          "pred_tag": "B-per",
+          "context": "Saturday , Afghani Pajhwok news",
+          "position": 3
+        },
+        {
+          "word": "Pajhwok",
+          "true_tag": "I-org",
+          "pred_tag": "I-per",
+          "context": ", Afghani Pajhwok news agency",
+          "position": 4
+        },
+        {
+          "word": "Mexico",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Brazil , Mexico and Canada",
+          "position": 19
+        },
+        {
+          "word": "and",
+          "true_tag": "I-org",
+          "pred_tag": "O",
+          "context": ", Mexico and Canada can",
+          "position": 20
+        },
+        {
+          "word": "Canada",
+          "true_tag": "I-org",
+          "pred_tag": "B-geo",
+          "context": "Mexico and Canada can begin",
+          "position": 21
+        },
+        {
+          "word": "Police",
+          "true_tag": "I-org",
+          "pred_tag": "O",
+          "context": "National Park Police declined in",
+          "position": 6
+        },
+        {
+          "word": "Mall",
+          "true_tag": "I-geo",
+          "pred_tag": "I-org",
+          "context": "the National Mall near the",
+          "position": 32
+        }
+      ]
+    }
+  },
+  "bilstm_crf": {
+    "model_name": "bilstm_crf",
+    "is_crf": true,
+    "boundary_errors": {
+      "total": 0,
+      "by_type": {}
+    },
+    "f1_report": {
+      "art": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": "35"
+      },
+      "eve": {
+        "precision": 0.75,
+        "recall": 0.375,
+        "f1-score": 0.5,
+        "support": "24"
+      },
+      "geo": {
+        "precision": 0.8441147859922179,
+        "recall": 0.9112627986348123,
+        "f1-score": 0.8764044943820225,
+        "support": "3809"
+      },
+      "gpe": {
+        "precision": 0.969553450608931,
+        "recall": 0.9359895493141738,
+        "f1-score": 0.9524759056164838,
+        "support": "1531"
+      },
+      "nat": {
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1-score": 0.25,
+        "support": "14"
+      },
+      "org": {
+        "precision": 0.8199871877001922,
+        "recall": 0.6330365974282888,
+        "f1-score": 0.7144850683784539,
+        "support": "2022"
+      },
+      "per": {
+        "precision": 0.7835051546391752,
+        "recall": 0.7543424317617866,
+        "f1-score": 0.7686472819216182,
+        "support": "1612"
+      },
+      "tim": {
+        "precision": 0.8860312657589511,
+        "recall": 0.85791015625,
+        "f1-score": 0.8717439841230463,
+        "support": "2048"
+      },
+      "micro avg": {
+        "precision": 0.8567423605270535,
+        "recall": 0.8263181613339342,
+        "f1-score": 0.8412552761974674,
+        "support": "11095"
+      },
+      "macro avg": {
+        "precision": 0.7566489805874335,
+        "recall": 0.5762998345307755,
+        "f1-score": 0.6167195918027031,
+        "support": "11095"
+      },
+      "weighted avg": {
+        "precision": 0.8532885072383146,
+        "recall": 0.8263181613339342,
+        "f1-score": 0.8365070064716397,
+        "support": "11095"
+      }
+    },
+    "confusion_matrix": {
+      "tags": [
+        "B-art",
+        "B-eve",
+        "B-geo",
+        "B-gpe",
+        "B-nat",
+        "B-org",
+        "B-per",
+        "B-tim",
+        "I-art",
+        "I-eve",
+        "I-geo",
+        "I-gpe",
+        "I-nat",
+        "I-org",
+        "I-per",
+        "I-tim",
+        "O"
+      ],
+      "matrix": [
+        [
+          0,
+          0,
+          7,
+          1,
+          0,
+          9,
+          3,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          13
+        ],
+        [
+          0,
+          9,
+          3,
+          1,
+          0,
+          3,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          2,
+          2
+        ],
+        [
+          0,
+          0,
+          3491,
+          8,
+          0,
+          73,
+          51,
+          11,
+          0,
+          0,
+          31,
+          0,
+          0,
+          7,
+          18,
+          4,
+          115
+        ],
+        [
+          0,
+          1,
+          71,
+          1434,
+          0,
+          8,
+          3,
+          0,
+          0,
+          0,
+          3,
+          1,
+          0,
+          2,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11
+        ],
+        [
+          0,
+          0,
+          305,
+          18,
+          0,
+          1327,
+          82,
+          1,
+          0,
+          1,
+          3,
+          0,
+          0,
+          32,
+          35,
+          1,
+          217
+        ],
+        [
+          0,
+          0,
+          66,
+          1,
+          0,
+          41,
+          1311,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          13,
+          94,
+          0,
+          85
+        ],
+        [
+          0,
+          0,
+          31,
+          0,
+          0,
+          2,
+          0,
+          1810,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          32,
+          172
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0,
+          0,
+          15,
+          3,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          6,
+          1,
+          2,
+          6
+        ],
+        [
+          0,
+          0,
+          27,
+          0,
+          0,
+          2,
+          1,
+          0,
+          0,
+          0,
+          634,
+          0,
+          0,
+          38,
+          31,
+          2,
+          23
+        ],
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          6,
+          5,
+          0,
+          1,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          35,
+          4,
+          0,
+          34,
+          18,
+          0,
+          0,
+          0,
+          70,
+          0,
+          0,
+          1294,
+          88,
+          4,
+          139
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          1,
+          22,
+          1,
+          0,
+          0,
+          26,
+          0,
+          0,
+          42,
+          1551,
+          1,
+          16
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          1,
+          1,
+          47,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          522,
+          110
+        ],
+        [
+          1,
+          1,
+          68,
+          9,
+          0,
+          60,
+          57,
+          111,
+          2,
+          1,
+          15,
+          0,
+          0,
+          70,
+          50,
+          66,
+          88911
+        ]
+      ]
+    },
+    "entity_errors": {
+      "total_errors": 3070,
+      "error_type_counts": {
+        "B-org → B-geo": 305,
+        "B-org → O": 217,
+        "B-tim → O": 172,
+        "I-org → O": 139,
+        "B-geo → O": 115,
+        "O → B-tim": 111,
+        "I-tim → O": 110,
+        "B-per → I-per": 94,
+        "I-org → I-per": 88,
+        "B-per → O": 85,
+        "B-org → B-per": 82,
+        "B-geo → B-org": 73,
+        "B-gpe → B-geo": 71,
+        "O → I-org": 70,
+        "I-org → I-geo": 70,
+        "O → B-geo": 68,
+        "O → I-tim": 66,
+        "B-per → B-geo": 66,
+        "O → B-org": 60,
+        "O → B-per": 57
+      },
+      "examples": [
+        {
+          "word": "time",
+          "true_tag": "B-tim",
+          "pred_tag": "O",
+          "context": "the first time .",
+          "position": 21
+        },
+        {
+          "word": "Iran",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Iran 's Supreme",
+          "position": 0
+        },
+        {
+          "word": "Supreme",
+          "true_tag": "B-per",
+          "pred_tag": "O",
+          "context": "Iran 's Supreme Leader Ayatollah",
+          "position": 2
+        },
+        {
+          "word": "Leader",
+          "true_tag": "I-per",
+          "pred_tag": "O",
+          "context": "'s Supreme Leader Ayatollah Ali",
+          "position": 3
+        },
+        {
+          "word": "Ayatollah",
+          "true_tag": "I-per",
+          "pred_tag": "B-per",
+          "context": "Supreme Leader Ayatollah Ali Khamenei",
+          "position": 4
+        },
+        {
+          "word": "Washington",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "ties with Washington might one",
+          "position": 13
+        },
+        {
+          "word": "Minister",
+          "true_tag": "O",
+          "pred_tag": "I-per",
+          "context": "and Prime Minister Ibrahim al-Jaafari",
+          "position": 15
+        },
+        {
+          "word": "Ibrahim",
+          "true_tag": "B-per",
+          "pred_tag": "I-per",
+          "context": "Prime Minister Ibrahim al-Jaafari .",
+          "position": 16
+        },
+        {
+          "word": "Minister",
+          "true_tag": "O",
+          "pred_tag": "I-per",
+          "context": "into Prime Minister Ehud Olmert",
+          "position": 13
+        },
+        {
+          "word": "Ehud",
+          "true_tag": "B-per",
+          "pred_tag": "I-per",
+          "context": "Prime Minister Ehud Olmert 's",
+          "position": 14
+        },
+        {
+          "word": ",",
+          "true_tag": "I-tim",
+          "pred_tag": "O",
+          "context": "On Tuesday , Senegal and",
+          "position": 2
+        },
+        {
+          "word": "Senegal",
+          "true_tag": "B-gpe",
+          "pred_tag": "B-geo",
+          "context": "Tuesday , Senegal and China",
+          "position": 3
+        },
+        {
+          "word": "Vivanco",
+          "true_tag": "B-per",
+          "pred_tag": "O",
+          "context": "Vivanco and his",
+          "position": 0
+        },
+        {
+          "word": "al-Anbar",
+          "true_tag": "B-geo",
+          "pred_tag": "O",
+          "context": "in western al-Anbar province ,",
+          "position": 14
+        },
+        {
+          "word": "'s",
+          "true_tag": "O",
+          "pred_tag": "I-org",
+          "context": "Pakistan People 's Party and",
+          "position": 5
+        },
+        {
+          "word": "Party",
+          "true_tag": "B-org",
+          "pred_tag": "I-org",
+          "context": "People 's Party and former",
+          "position": 6
+        },
+        {
+          "word": "Pakistan",
+          "true_tag": "B-geo",
+          "pred_tag": "B-org",
+          "context": "Sharif 's Pakistan Muslim League",
+          "position": 14
+        },
+        {
+          "word": "Muslim",
+          "true_tag": "I-geo",
+          "pred_tag": "I-org",
+          "context": "'s Pakistan Muslim League Party",
+          "position": 15
+        },
+        {
+          "word": "League",
+          "true_tag": "I-geo",
+          "pred_tag": "I-org",
+          "context": "Pakistan Muslim League Party ,",
+          "position": 16
+        },
+        {
+          "word": "Party",
+          "true_tag": "I-geo",
+          "pred_tag": "I-org",
+          "context": "Muslim League Party , the",
+          "position": 17
         },
         {
           "word": "Sudan",
@@ -1430,9 +1425,23 @@
           "position": 9
         },
         {
+          "word": "Abu",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Baghdad 's Abu Ghraib prison",
+          "position": 15
+        },
+        {
+          "word": "Ghraib",
+          "true_tag": "I-org",
+          "pred_tag": "I-geo",
+          "context": "'s Abu Ghraib prison in",
+          "position": 16
+        },
+        {
           "word": "Vioxx",
           "true_tag": "B-art",
-          "pred_tag": "O",
+          "pred_tag": "B-org",
           "context": "of a Vioxx user .",
           "position": 17
         },
@@ -1465,39 +1474,18 @@
           "position": 15
         },
         {
-          "word": "Minister",
-          "true_tag": "I-per",
-          "pred_tag": "O",
-          "context": ", Prime Minister Tony Blair",
-          "position": 3
-        },
-        {
-          "word": "Tony",
-          "true_tag": "I-per",
-          "pred_tag": "B-per",
-          "context": "Prime Minister Tony Blair told",
-          "position": 4
-        },
-        {
-          "word": "53-member",
-          "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": "of the 53-member African Union",
-          "position": 4
-        },
-        {
           "word": "African",
           "true_tag": "B-org",
-          "pred_tag": "I-org",
+          "pred_tag": "B-geo",
           "context": "the 53-member African Union have",
           "position": 5
         },
         {
-          "word": "two-day",
-          "true_tag": "B-tim",
-          "pred_tag": "O",
-          "context": "opened their two-day summit ,",
-          "position": 10
+          "word": "Union",
+          "true_tag": "I-org",
+          "pred_tag": "I-geo",
+          "context": "53-member African Union have opened",
+          "position": 6
         },
         {
           "word": "President",
@@ -1514,102 +1502,123 @@
           "position": 5
         },
         {
-          "word": "If",
+          "word": "Minister",
           "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": ": \" If You Do",
-          "position": 19
-        },
-        {
-          "word": "You",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "\" If You Do n't",
-          "position": 20
-        },
-        {
-          "word": "Do",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "If You Do n't See",
-          "position": 21
-        },
-        {
-          "word": "See",
-          "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": "Do n't See What You",
-          "position": 23
-        },
-        {
-          "word": "What",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "n't See What You Want",
-          "position": 24
-        },
-        {
-          "word": "You",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "See What You Want ,",
-          "position": 25
-        },
-        {
-          "word": "Want",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "What You Want , Ask",
-          "position": 26
-        },
-        {
-          "word": "Ask",
-          "true_tag": "O",
-          "pred_tag": "B-org",
-          "context": "Want , Ask For It",
-          "position": 28
-        },
-        {
-          "word": "For",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": ", Ask For It .",
-          "position": 29
-        },
-        {
-          "word": "It",
-          "true_tag": "O",
-          "pred_tag": "I-org",
-          "context": "Ask For It . \"",
-          "position": 30
-        },
-        {
-          "word": "al-Qawasmi",
-          "true_tag": "O",
-          "pred_tag": "B-per",
-          "context": "Officials said al-Qawasmi has been",
+          "pred_tag": "I-per",
+          "context": "Israeli Prime Minister Benjamin Netanyahu",
           "position": 2
         },
         {
-          "word": "since",
-          "true_tag": "O",
-          "pred_tag": "B-tim",
-          "context": "been wanted since 1998 for",
+          "word": "Benjamin",
+          "true_tag": "B-per",
+          "pred_tag": "I-per",
+          "context": "Prime Minister Benjamin Netanyahu has",
+          "position": 3
+        },
+        {
+          "word": "poll",
+          "true_tag": "I-tim",
+          "pred_tag": "O",
+          "context": "'s December poll .",
+          "position": 20
+        },
+        {
+          "word": "Afghani",
+          "true_tag": "B-org",
+          "pred_tag": "B-per",
+          "context": "Saturday , Afghani Pajhwok news",
+          "position": 3
+        },
+        {
+          "word": "Pajhwok",
+          "true_tag": "I-org",
+          "pred_tag": "I-per",
+          "context": ", Afghani Pajhwok news agency",
+          "position": 4
+        },
+        {
+          "word": "Mexico",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Brazil , Mexico and Canada",
+          "position": 19
+        },
+        {
+          "word": "and",
+          "true_tag": "I-org",
+          "pred_tag": "O",
+          "context": ", Mexico and Canada can",
+          "position": 20
+        },
+        {
+          "word": "Canada",
+          "true_tag": "I-org",
+          "pred_tag": "B-geo",
+          "context": "Mexico and Canada can begin",
+          "position": 21
+        },
+        {
+          "word": "Police",
+          "true_tag": "I-org",
+          "pred_tag": "O",
+          "context": "National Park Police declined in",
           "position": 6
         },
         {
-          "word": "1998",
-          "true_tag": "B-tim",
-          "pred_tag": "I-tim",
-          "context": "wanted since 1998 for a",
-          "position": 7
+          "word": "Abd-al-Nisr",
+          "true_tag": "B-org",
+          "pred_tag": "O",
+          "context": ", while Abd-al-Nisr Mohammed Khantumani",
+          "position": 19
         },
         {
-          "word": "Saudi",
-          "true_tag": "B-geo",
-          "pred_tag": "B-org",
-          "context": "Oman , Saudi Arabia ,",
-          "position": 19
+          "word": "Mohammed",
+          "true_tag": "I-org",
+          "pred_tag": "B-per",
+          "context": "while Abd-al-Nisr Mohammed Khantumani was",
+          "position": 20
+        },
+        {
+          "word": "Khantumani",
+          "true_tag": "I-org",
+          "pred_tag": "I-per",
+          "context": "Abd-al-Nisr Mohammed Khantumani was resettled",
+          "position": 21
+        },
+        {
+          "word": "Darfur",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Violence in Darfur has increased",
+          "position": 2
+        },
+        {
+          "word": "Minister",
+          "true_tag": "O",
+          "pred_tag": "B-per",
+          "context": "Israeli Defense Minister Shaul Mofaz",
+          "position": 2
+        },
+        {
+          "word": "Shaul",
+          "true_tag": "B-per",
+          "pred_tag": "I-per",
+          "context": "Defense Minister Shaul Mofaz and",
+          "position": 3
+        },
+        {
+          "word": "Egypt",
+          "true_tag": "B-org",
+          "pred_tag": "B-geo",
+          "context": "Egypt has condemned",
+          "position": 0
+        },
+        {
+          "word": "-",
+          "true_tag": "O",
+          "pred_tag": "B-tim",
+          "context": "the most - over three",
+          "position": 17
         }
       ]
     }

@@ -1,16 +1,19 @@
 const API = '';
 let f1Data = null, demoSentences = [], currentMetric = 'f1', f1Chart = null;
 const entityColors = {
-  'PER':'#a864dc','I-PER':'#a864dc','B-PER':'#a864dc','per':'#a864dc','I-per':'#a864dc','B-per':'#a864dc',
-  'GEO':'#3498db','I-GEO':'#3498db','B-GEO':'#3498db','geo':'#3498db','I-geo':'#3498db','B-geo':'#3498db',
-  'ORG':'#f1943f','I-ORG':'#f1943f','B-ORG':'#f1943f','org':'#f1943f','I-org':'#f1943f','B-org':'#f1943f',
-  'GPE':'#27ae60','I-GPE':'#27ae60','B-GPE':'#27ae60','gpe':'#27ae60','I-gpe':'#27ae60','B-gpe':'#27ae60',
-  'TIM':'#f1c40f','I-TIM':'#f1c40f','B-TIM':'#f1c40f','tim':'#f1c40f','I-tim':'#f1c40f','B-tim':'#f1c40f',
+  'PER':'#a864dc','I-PER':'#a864dc','B-PER':'#a864dc','E-PER':'#a864dc','S-PER':'#a864dc','per':'#a864dc','I-per':'#a864dc','B-per':'#a864dc','E-per':'#a864dc','S-per':'#a864dc',
+  'GEO':'#3498db','I-GEO':'#3498db','B-GEO':'#3498db','E-GEO':'#3498db','S-GEO':'#3498db','geo':'#3498db','I-geo':'#3498db','B-geo':'#3498db','E-geo':'#3498db','S-geo':'#3498db',
+  'ORG':'#f1943f','I-ORG':'#f1943f','B-ORG':'#f1943f','E-ORG':'#f1943f','S-ORG':'#f1943f','org':'#f1943f','I-org':'#f1943f','B-org':'#f1943f','E-org':'#f1943f','S-org':'#f1943f',
+  'GPE':'#27ae60','I-GPE':'#27ae60','B-GPE':'#27ae60','E-GPE':'#27ae60','S-GPE':'#27ae60','gpe':'#27ae60','I-gpe':'#27ae60','B-gpe':'#27ae60','E-gpe':'#27ae60','S-gpe':'#27ae60',
+  'TIM':'#f1c40f','I-TIM':'#f1c40f','B-TIM':'#f1c40f','E-TIM':'#f1c40f','S-TIM':'#f1c40f','tim':'#f1c40f','I-tim':'#f1c40f','B-tim':'#f1c40f','E-tim':'#f1c40f','S-tim':'#f1c40f',
+  'ART':'#e84393','I-ART':'#e84393','B-ART':'#e84393','E-ART':'#e84393','S-ART':'#e84393','art':'#e84393','I-art':'#e84393','B-art':'#e84393','E-art':'#e84393','S-art':'#e84393',
+  'EVE':'#00cec9','I-EVE':'#00cec9','B-EVE':'#00cec9','E-EVE':'#00cec9','S-EVE':'#00cec9','eve':'#00cec9','I-eve':'#00cec9','B-eve':'#00cec9','E-eve':'#00cec9','S-eve':'#00cec9',
+  'NAT':'#6c5ce7','I-NAT':'#6c5ce7','B-NAT':'#6c5ce7','E-NAT':'#6c5ce7','S-NAT':'#6c5ce7','nat':'#6c5ce7','I-nat':'#6c5ce7','B-nat':'#6c5ce7','E-nat':'#6c5ce7','S-nat':'#6c5ce7',
 };
-const entityNames = {'PER':'Người','GEO':'Địa lý','ORG':'Tổ chức','GPE':'Địa-CT','TIM':'Thời gian',
-  'per':'Người','geo':'Địa lý','org':'Tổ chức','gpe':'Địa-CT','tim':'Thời gian'};
+const entityNames = {'PER':'Người','GEO':'Địa lý','ORG':'Tổ chức','GPE':'Địa-CT','TIM':'Thời gian','ART':'Tác phẩm','EVE':'Sự kiện','NAT':'Tự nhiên',
+  'per':'Người','geo':'Địa lý','org':'Tổ chức','gpe':'Địa-CT','tim':'Thời gian','art':'Tác phẩm','eve':'Sự kiện','nat':'Tự nhiên'};
 
-function getBaseType(tag) { return tag === 'O' ? null : tag.replace(/^[BI]-/, ''); }
+function getBaseType(tag) { return tag === 'O' ? null : tag.replace(/^[BIES]-/, ''); }
 function getColor(tag) { return entityColors[tag] || (tag !== 'O' ? '#95a5a6' : null); }
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -108,7 +111,7 @@ function buildTaggedHTML(tokens, isSM) {
     if (tag==='O') { h+=`<span class="ent ent-O">${escHtml(word)}</span>`; }
     else {
       const base = getBaseType(tag);
-      const isErr = isSM && tag.startsWith('I-') && (i===0 || tokens[i-1].tag==='O' || getBaseType(tokens[i-1].tag)!==base);
+      const isErr = isSM && (tag.startsWith('I-') || tag.startsWith('E-')) && (i===0 || tokens[i-1].tag==='O' || tokens[i-1].tag.startsWith('S-') || tokens[i-1].tag.startsWith('E-') || getBaseType(tokens[i-1].tag)!==base);
       const cls = isErr ? 'ent-error' : 'ent-'+tag;
       h+=`<span class="ent ${cls}">${escHtml(word)}<sup class="tag-label">${isErr?tag+' ⚠':tag}</sup></span>`;
     }
@@ -121,7 +124,7 @@ function buildEntityList(tokens) {
   const ents = {}; let cur=null, curT=null;
   for (const {word,tag} of tokens) {
     if (tag==='O'){cur=null;curT=null;continue;} const t=getBaseType(tag);
-    if (tag.startsWith('B-')){cur=word;curT=t;} else if(tag.startsWith('I-')&&curT===t){cur+=' '+word;} else{cur=word;curT=t;}
+    if (tag.startsWith('B-') || tag.startsWith('S-')){cur=word;curT=t;} else if((tag.startsWith('I-') || tag.startsWith('E-')) && curT===t){cur+=' '+word;} else{cur=word;curT=t;}
     if(curT){if(!ents[curT])ents[curT]=new Set();ents[curT].add(cur);}
   }
   if (!Object.keys(ents).length) return '';
@@ -143,7 +146,7 @@ function buildTokenTable(crf, softmax) {
   h+='<th style="padding:6px 10px;background:var(--bg2);color:var(--text3);border:1px solid var(--border)">Khớp?</th></tr>';
   for (let i=0;i<n;i++){
     const sm=softmax[i],cr=crf[i],match=sm.tag===cr.tag;
-    const isE=sm.tag.startsWith('I-')&&(i===0||softmax[i-1].tag==='O'||getBaseType(softmax[i-1].tag)!==getBaseType(sm.tag));
+    const isE=(sm.tag.startsWith('I-') || sm.tag.startsWith('E-'))&&(i===0||softmax[i-1].tag==='O'||softmax[i-1].tag.startsWith('S-')||softmax[i-1].tag.startsWith('E-')||getBaseType(softmax[i-1].tag)!==getBaseType(sm.tag));
     h+=`<tr><td style="padding:4px 10px;border:1px solid var(--border);color:var(--text2)">${escHtml(sm.word)}</td>
     <td style="padding:4px 10px;border:1px solid var(--border);text-align:center;color:${getColor(sm.tag)||'var(--text2)'};${isE?'background:rgba(231,76,60,0.08)':''}">${sm.tag}${isE?' ⚠':''}</td>
     <td style="padding:4px 10px;border:1px solid var(--border);text-align:center;color:${getColor(cr.tag)||'var(--text2)'}">${cr.tag}</td>
